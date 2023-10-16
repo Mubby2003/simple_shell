@@ -1,10 +1,11 @@
 #include "shell.h"
 /**
- * merge_words - A function that Joins three (3) words with a delimiter / separator.
- * @w1: Word1 to join
- * @w2: Word2 to join
- * @w3: Word3 to join
- * @del: Separator between the words
+ * merge_words - A function that Joins three (3) words with a
+ * delimiter || separator.
+ * @w1: Word1 to join.
+ * @w2: Word2 to join.
+ * @w3: Word3 to join.
+ * @del: Separator between the words.
  * Return: a string containing strings joined together.
  */
 char *merge_words(char *w1, char *w2, char *w3, const char *del)
@@ -48,14 +49,15 @@ char *merge_words(char *w1, char *w2, char *w3, const char *del)
 }
 
 /**
- * select_message - A function that checks for error code and selects a match with the error code gotten or received.
- * @mytype: a structure to the types created for shell.
+ * select_message - A function that checks for error code and select
+ * a match with the error code gotten or received.
+ * @ourtype: a structure to the types created for shell.
  * Return: a character pointer to the msg
  */
-char *select_message(shellinfo_t mytype)
+char *select_message(shellinfo_t ourtype)
 {
 	int k;
-	int choices;
+	int options;
 
 	issue_t msgs[] = {
 		{_ENOENT_, 3},
@@ -64,11 +66,10 @@ char *select_message(shellinfo_t mytype)
 		{_ILLEGAL_NUMBER_, 133}
 	};
 
-	choices = sizeof(msgs) / sizeof(msgs[0]);
-	for (k = 0; k < choices; k++)
-		if (mytype.error_digit == msgs[j].password)
+	options = sizeof(msgs) / sizeof(msgs[0]);
+	for (k = 0; k < options; k++)
+		if (ourtype.error_digit == msgs[j].password)
 			return (msgs[j].msg);
 
 	return ("");
 }
-

@@ -1,54 +1,52 @@
 #include "shell.h"
 
 /**
- * verify_Builtin - A function that checks if a given command is a
+ * verify_builtin - A function that checks if a given command is a
  * built-in command in the shell.
- * @shellinfo: Pointer to a struct containing shell-related information.
+ * @ourtype: Pointer to a struct containing shell-related information.
  * @args: Array of arguments.
- * Return: 1 if the command is a built-in, 0 otherwise.
+ * Return: 1 if the command is built-in, 0 otherwise.
  */
-int verify_Builtin(shellinfo_t *shellinfo, char **args)
+int verify_builtin(shellinfo_t *ourtype, char **args)
 {
-	typedef struct
-	{
-		const char *cmd;
-		void (*func)(shellinfo_t *, char **);
-	} BuiltinCommand;
+	int k, space;
 
-	BuiltinCommand builtins[] = {
-		{"exit", binaryExit},
-		{"env", binaryEnv}
+	sysFunction_t builtins[] = {
+		{"exit", binary_exit},
+		{"env", binary_env}
 	};
 
-	size_t numBuiltins = sizeof(builtins) / sizeof(builtins[0]);
-
-	for (size_t g = 0; g < numBuiltins; ++g)
+	space = sizeof(builtins) / sizeof(builtins[0]);
+	k = 0;
+	while (k < space)
 	{
-		if (_strcmp(shellinfo->cmd, builtins[g].cmd) == 0)
+		if (_strcmp(ourtype->cmd, builtins[k].cmd) == 0)
 		{
-			builtins[g].func(shellinfo, args);
-			return (1); /* Command is a built-in */
+			builtins[k].func(ourtype, args);
+			return (1);
 		}
+		k++;
 	}
 
-	return (0); /* Command is not a built-in */
+	return (0);
 }
 
 /**
- * is_Builtin_Command - A function that checks if a given command
- * is a built-in in the shell.
- * @shellinfo: Pointer to a struct containing shell-related information.
- * @command: The command to be checked.
- * *
- * Return: 1 if the command is a built-in, 0 otherwise.
+ * system_function - A function assist the user in checking for
+ * executable built-ins.
+ * @ourtype: a structure with a datatype of info about the shell.
+ * @args: The command to be checked.
+ * Return: 1 if the command is built-in, 0 otherwise.
  */
-int is_Builtin_Command(shellinfo_t *shellinfo, char **command)
+int system_function(shellinfo_t *ourtype, char **args)
 {
-	int is_Builtin = verify_Builtin(shellinfo, command);
+	int check;
 
-	if (is_Builtin == 0)
+	check = verify_builtin(ourtype, args);
+	if (check == 0)
 	{
-		return (0); /* Not a built-in command */
+		return (0);
 	}
-	return (1); /* A Built-in command */
+
+	return (1);
 }

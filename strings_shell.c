@@ -1,21 +1,48 @@
 #include "shell.h"
 
 /**
+ * _strcat - A function that concatenates two strings.
+ * @dest: the destination string.
+ * @src: the source string.
+ * Return: destination string (char *ptr)
+ */
+char *_strcat(char *dest, char *src)
+{
+	int len1, len2, p;
+
+	for (len1 = 0; dest[len1] != '\0'; len1++)
+	{
+
+	}
+
+	for (len2 = 0; src[len2] != '\0'; len2++)
+	{
+
+	}
+	for (p = 0; p <= len2; p++)
+	{
+		dest[len1 + p] = src[p];
+	}
+
+	return (dest);
+}
+
+/**
  * _strlen - A function that returns the length of a string.
  * @s: character string.
- * *
  * Return: length of the string.
  */
 int _strlen(char *s)
 {
-	char *ptr = s;
+	int len_total;
 
-	while (*ptr != '\0')
+	len_total = 0;
+	while (s[len_total] != '\0')
 	{
-		ptr++;
+		len_total++;
 	}
 
-	return (ptr - s);
+	return (len_total);
 }
 
 /**
@@ -26,50 +53,45 @@ int _strlen(char *s)
  */
 int _strcmp(char *s1, char *s2)
 {
-	while (*s1 != '\0' && *s2 != '\0' && *s1 == *s2)
+	int k;
+	int j = 0;
+
+	for (k = 0; s1[k] != '\0' && j == 0; k++)
 	{
-		s1++;
-		s2++;
+		j = s1[k] - s2[k];
 	}
 
-	return (*s1 - *s2);
+	return (j);
 }
 
 /**
  * _strcpy - Copies a string from source to destination.
  * @dest: Pointer to the destination buffer.
  * @src: Pointer to the source string.
- * *
  * Return: Pointer to the destination buffer.
  */
-char *_strcpy(char *dest, const char *src)
+char *_strcpy(char *dest, char *src)
 {
-	if (dest == NULL || src == NULL)
+	int g;
+
+	for (g = 0; src[g] != '\0'; g++)
 	{
-		/* Handles NULL pointers */
-		return (NULL);
+		dest[g] = src[g];
 	}
+	dest[g] = '\0';
 
-	char *original_Dest = dest;/* Stores the original destination pointer*/
-
-	while ((*dest++ = *src++))
-	{
-		/* Copies the characters from source to destination */
-	}
-
-	return (original_Dest); /* Returns the original destination pointer */
+	return (dest);
 }
 
 /**
  * _strdup - A function that copies a string.
  * @str: String to be copied.
- * *
  * Return: A character pointer to the newly allocated string in memory.
  */
 char *_strdup(char *str)
 {
 	char *dest;
-	int str_size, k;
+	int str_size, m;
 
 	if (str == NULL)
 	{
@@ -82,13 +104,10 @@ char *_strdup(char *str)
 	{
 		return (NULL);
 	}
-
-	for (k = 0; k < str_size - 1; k++)
+	for (m = 0; j < str_size; m++)
 	{
-		dest[k] = str[k];
+		dest[m] = str[m];
 	}
-	dest[k] = '\0';
-/*Null terminator added to the end of the destination string*/
 
 	return (dest);
 }

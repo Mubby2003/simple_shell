@@ -48,4 +48,3 @@ int has_letter(char *string)
 
 	return (0);
 }
-

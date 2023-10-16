@@ -1,12 +1,12 @@
 #include "shell.h"
 /**
  * evaluate - A function that runs analysis on args passed to the shell prompt.
- * @args: argument to check for
- * @mytype: a structure created of a certain shell data type.
- * @buffer: Line accepted
+ * @args: argument to be checked.
+ * @ourtype: a structure created of a certain shell data type.
+ * @buffer: Line accepted.
  * Return: nothing, upon success.
  */
-void evaluate(char **args, shellinfo_t *mytype, char *buffer)
+void evaluate(char **args, shellinfo_t *ourtype, char *buffer)
 {
 	char *cmd;
 	int update;
@@ -16,46 +16,46 @@ void evaluate(char **args, shellinfo_t *mytype, char *buffer)
 		return;
 	}
 	cmd = args[0];
-	mytype->cmd = cmd;
-	if (verify_builtin(mytype, args) == 1)
+	ourtype->cmd = cmd;
+	if (verify_builtin(ourtype, args) == 1)
 	{
 		return;
 	}
 	update = is_file(cmd);
 	if (update == 0)
 	{
-		mytype->code_stat = 126;
-		mytype->error_digit = 13;
-		issue(mytype);
+		ourtype->code_stat = 126;
+		ourtype->error_digit = 13;
+		issue(ourtype);
 		return;
 	}
 	if (update == 1)
 	{
-		run(cmd, args, mytype, buffer);
+		run(cmd, args, ourtype, buffer);
 		return;
 	}
-	if (get_current_dir(cmd, args, buffer, mytype) == 1)
+	if (get_current_dir(cmd, args, buffer, ourtype) == 1)
 		return;
-	mytype->cmd_path = choose(cmd, mytype);
-	if (mytype->cmd_path != NULL)
+	ourtype->cmd_path = choose(cmd, ourtype);
+	if (ourtype->cmd_path != NULL)
 	{
-		run(mytype->cmd_path, args, mytype, buffer);
-		release_memory((void *) mytype->cmd_path);
+		run(ourtype->cmd_path, args, ourtype, buffer);
+		release_memory((void *) ourtype->cmd_path);
 		return;
 	}
-	mytype->code_stat = 127;
-	mytype->error_digit = 132;
-	issue(mytype);
+	ourtype->code_stat = 127;
+	ourtype->error_digit = 132;
+	issue(ourtype);
 }
 
 /**
  * exchange - A function that is built for replacement.
- * @mytype: a struct called g_t that takes in a pointer
- * @id: index parameter to take note.
+ * @ourtype: a shell struct.
+ * @id: index parameter.
  * @word: input words.
- * Return: pointer to a string
+ * Return: pointer to a string.
  */
-char *exchange(shellinfo_t *mytype, int *id, char *word)
+char *exchange(shellinfo_t *ourtype, int *id, char *word)
 {
 	char *temp, sign;
 
@@ -64,13 +64,11 @@ char *exchange(shellinfo_t *mytype, int *id, char *word)
 	sign = *word;
 	if (sign != '?' && sign != '$')
 	{
-		temp = sub_env(mytype, word);
+		temp = sub_env(ourtype, word);
 		return (temp);
 	}
-
-	temp = (sign == '$') ? stringify(mytype->pid) :
-		stringify(mytype->code_stat);
+	temp = (sign == '$') ? stringify(ourtype->pid) :
+		stringify(ourtype->code_stat);
 
 	return (temp);
 }
-
