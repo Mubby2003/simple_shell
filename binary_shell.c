@@ -27,7 +27,7 @@ void binary_exit(shellinfo_t *ourtype, char **args)
 	stat = 1;
 	if (args[1] != NULL)
 	{
-		stat = manage_numbers(ourtype, args[1]);
+		stat = handle_numbers(ourtype, args[1]);
 	}
 
 	if (stat == 0)

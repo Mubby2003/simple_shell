@@ -36,7 +36,7 @@ void additional_error(shellinfo_t *ourtype, char *more)
 
 	num = NULL;
 	msg = select_message(*ourtype);
-	num = stringify(ourtype->n_cmd);
+	num = stringify(ourtype->num_cmd);
 
 	num_size = _strlen(num);
 	msg_size = _strlen(ourtype->argv[0]);
@@ -73,7 +73,7 @@ void issue(shellinfo_t *ourtype)
 
 	num = NULL;
 	msg = select_message(*ourtype);
-	num = stringify(ourtype->n_cmd);
+	num = stringify(ourtype->num_cmd);
 
 	num_size = _strlen(num);
 	msg_size = _strlen(ourtype->argv[0]);
@@ -84,7 +84,7 @@ void issue(shellinfo_t *ourtype)
 	au = _strcat(au, ": ");
 	au = _strcat(au, num);
 
-	msg = mergeWords(au, ourtype->cmd, msg, ": ");
+	msg = merge_words(au, ourtype->cmd, msg, ": ");
 	display_error(msg);
 
 	free(msg);
