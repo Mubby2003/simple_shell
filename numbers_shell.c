@@ -28,13 +28,13 @@ int number(int num)
 }
 
 /**
- * manage_numbers - A function that helps the user control the
+ * handle_numbers - A function that helps the user control the
  * argument of exit builtin.
  * @ourtype: a pointer to the shell struct to access its types.
  * @argument: Argument of the builtin exit to be passed.
  * Return: 1 upon success, else return 0 which is negative.
  */
-int manage_numbers(shellinfo_t *ourtype, char *argument)
+int handle_numbers(shellinfo_t *ourtype, char *argument)
 {
 	int tracer;
 

@@ -58,6 +58,7 @@ void binary_exit(shellinfo_t *ourtype, char **args);
 void binary_env(shellinfo_t *ourtype, char **args);
 void evaluate(char **args, shellinfo_t *ourtype, char *buffer);
 int number(int num);
+int main(int argc, char **argv);
 int is_numeric(unsigned int number);
 int has_letter(char *string);
 int write_character(char character);

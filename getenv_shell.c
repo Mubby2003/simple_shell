@@ -55,24 +55,3 @@ char *get_env(const char *variable)
 	}
 	return (NULL);
 }
-
-/**
- * sub_env - A function that replaces the env variable.
- * @ourtype: input as parameter.
- * @envi_var: input environment variable.
- * Return: pointer to a string.
- */
-char *sub_env(shellinfo_t *ourtype, char *envi_var)
-{
-	char *envirt;
-
-	(void) ourtype;
-
-	envirt = get_env(envi_var);
-	if (envirt != NULL)
-	{
-		return (envirt);
-	}
-
-	return (NULL);
-}
