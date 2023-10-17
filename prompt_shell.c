@@ -33,7 +33,7 @@ void initiate_prompt(shellinfo_t *ourtype)
 		env_path = get_env("PATH");
 		is_curr_path(env_path, ourtype);
 
-		mytype->env = env_path;
+		ourtype->env = env_path;
 		buffer = parse_prompt();
 		if (buffer == NULL)
 		{

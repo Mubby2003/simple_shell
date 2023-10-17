@@ -104,7 +104,7 @@ char *_strdup(char *str)
 	{
 		return (NULL);
 	}
-	for (m = 0; j < str_size; m++)
+	for (m = 0; m < str_size; m++)
 	{
 		dest[m] = str[m];
 	}

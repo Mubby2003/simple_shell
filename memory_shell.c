@@ -26,7 +26,7 @@ void release_memory_pointer(void **pointer)
 
 	for (temp = pointer; *temp != NULL; temp++)
 	{
-		release_emory(*temp);
+		release_memory(*temp);
 	}
 
 	release_memory(pointer);
