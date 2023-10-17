@@ -41,7 +41,7 @@ void initiate_prompt(shellinfo_t *ourtype)
 			free(env_path);
 			break;
 		}
-		ourtype->n_cmd++;
+		ourtype->num_cmd++;
 		if (buffer[0] != '\n')
 		{
 			args = tokenize_words(buffer, " \t\n");
@@ -54,7 +54,7 @@ void initiate_prompt(shellinfo_t *ourtype)
 			release_memory_pointer((void *) args);
 		}
 		release_memory((void *) buffer);
-		release_emory((void *) env_path);
+		release_memory((void *) env_path);
 	}
 
 }

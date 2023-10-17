@@ -62,7 +62,7 @@ char *subtitute_value(shellinfo_t *ourtype, int *id, char *str)
  * @words: a pointer to a string passed as parameter.
  * Return: a pointer to a string.
  */
-char *handle_pattern(shelldata_t *ourtype, char *words)
+char *handle_pattern(shellinfo_t *ourtype, char *words)
 {
 	int k;
 
