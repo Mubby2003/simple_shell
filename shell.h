@@ -50,6 +50,7 @@ typedef struct __attribute__((__packed__))
 } sysFunction_t;
 
 void begin(shellinfo_t *ourtype);
+void additional_error(shellinfo_t *ourtype, char *more);
 void initiate_prompt(shellinfo_t *ourtype);
 void get_input(shellinfo_t *ourtype);
 void issue(shellinfo_t *ourtype);
